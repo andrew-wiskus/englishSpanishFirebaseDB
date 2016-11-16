@@ -1,18 +1,41 @@
 <button ng-click="logOff()">log off</button>
-<p>user: {{user.email}}</p>
-<p>id: {{user.uid}}</p>
-<input type="text" ng-model="dataInput" ng-value="dataInput"></input>
-<button ng-click="postData(dataInput)">ADD DATA TO DB</button>
+</br>
+</br>
+<!-- <div ng-if="langDB.verbs.list != undefined"> -->
+<div>
+    <div class="userWordCount">
+        <h3>words saved</h3>
+        <p>verbs: {{user.wordList.verbs.length}}/{{langDB.verbs.list.length}}</p>
+        <p>nouns: {{user.wordList.nouns.length}}/{{langDB.nouns.list.length}}</p>
+        <p>adjetives: {{user.wordList.adjetives.length}}/{{langDB.adjetives.list.length}}</p>
+    </div>
+    <button ng-click="show('verbList')">verbs</button>
+    <button ng-click="show('nounList')">nouns</button>
+    <button ng-click="show('adjList')">adjetives</button>
+    <div ng-click="showEnglish = !showEnglish; showEspanol = !showEspanol;" ng-show="showVerbs">
+        <p ng-if="showEnglish">{{currentWordList[user.wordList.verbs.length].en}}</p>
+        <p ng-if="showEspanol">{{currentWordList[user.wordList.verbs.length].es}}</p>
+    </div>
+    <div ng-click="showEnglish = !showEnglish; showEspanol = !showEspanol;" ng-show="showNouns">
+        <p ng-if="showEnglish">{{currentWordList[user.wordList.nouns.length].en}}</p>
+        <p ng-if="showEspanol">{{currentWordList[user.wordList.nouns.length].es}}</p>
+    </div>
+    <div ng-click="showEnglish = !showEnglish; showEspanol = !showEspanol;" ng-show="showAdjetives">
+        <p ng-if="showEnglish">{{currentWordList[user.wordList.adjetives.length].en}}</p>
+        <p ng-if="showEspanol">{{currentWordList[user.wordList.adjetives.length].es}}</p>
+    </div>
+    <div ng-if="showAdjetives || showNouns || showVerbs">
+        <button ng-click="addWord(1)">1</button>
+        <button ng-click="addWord(2)">2</button>
+        <button ng-click="addWord(3)">3</button>
+        <button ng-click="addWord(4)">4</button>
+        <button ng-click="addWord(5)">5</button>
+    </div>
+    <button ng-click="favoriteWord()">I LOVE THIS WORD FAVORITE IT PLX</button>
 
-<div ng-if="user.exampledb == 'loading'">
-  <h3>loading..</h3>
 </div>
-<div ng-if="user.exampledb != 'loading'">
-<h1 ng-if="user.exampledb.length != 0"> DATA LIST </h1>
-<div ng-repeat="data in user.exampledb">
-  <h3><span class="dataHeader">data:</span>{{data.data}}</h3>
-  <p>key: {{data.key}} </p>
-  <p>date added: {{data.date}} </p>
-</div>
-</div>
+
+<!-- <div ng-if="langDB.verbs.list == undefined">
+    loading dictionary :)
+</div> -->
 <!-- <p>firebaseUser: {{firebaseUser}}</p> -->
